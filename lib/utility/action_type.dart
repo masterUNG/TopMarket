@@ -1,0 +1,3 @@
+enum ActionType {
+  Insert, Modify
+}
