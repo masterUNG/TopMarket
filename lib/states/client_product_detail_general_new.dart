@@ -3,7 +3,7 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+// import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:topmaket/lookup/client_product_brand_listview.dart';
 import 'package:topmaket/lookup/client_product_group_listview.dart';
 import 'package:topmaket/lookup/client_product_type_listview.dart';
@@ -421,12 +421,12 @@ class _ClientProductDetailGeneralNewState
     String barcodeScanRes;
 
     try {
-      barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
-          '#ff6666', 'Cancel', true, ScanMode.BARCODE);
-      print(barcodeScanRes);
+      // barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
+      //     '#ff6666', 'Cancel', true, ScanMode.BARCODE);
+      // print(barcodeScanRes);
 
-      this.txtBarcode.text = barcodeScanRes;
-      this.model!.barcode = barcodeScanRes;
+      // this.txtBarcode.text = barcodeScanRes;
+      // this.model!.barcode = barcodeScanRes;
     } catch (err) {
       barcodeScanRes = 'Failed to get platform version.';
     }

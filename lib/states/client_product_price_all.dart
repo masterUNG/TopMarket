@@ -3,7 +3,7 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+// import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:topmaket/models/client_product_price2_mode.dart';
 //import 'package:topmaket/models/client_produt_price_model.dart';
 import 'package:topmaket/states/client_product_price_detail.dart';
@@ -83,13 +83,13 @@ class _ClientProductPriceAllState extends State<ClientProductPriceAll> {
     String barcodeScanRes;
 
     try {
-      barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
-          '#ff6666', 'Cancel', true, ScanMode.BARCODE);
-      //print("Barcoe => " + barcodeScanRes);
+      // barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
+      //     '#ff6666', 'Cancel', true, ScanMode.BARCODE);
+      // //print("Barcoe => " + barcodeScanRes);
 
-      this.txtSearchKey.text = barcodeScanRes;
+      // this.txtSearchKey.text = barcodeScanRes;
 
-      this.setState(() {});
+      // this.setState(() {});
     } catch (err) {
       barcodeScanRes = "อุปกรณ์ไม่รองรับ";
     }

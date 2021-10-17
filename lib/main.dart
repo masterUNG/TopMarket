@@ -38,6 +38,7 @@ import 'package:topmaket/states/product_reorder.dart';
 import 'package:topmaket/states/sale.dart';
 import 'package:topmaket/states/sale_detail.dart';
 import 'package:topmaket/states/client_home.dart';
+import 'package:topmaket/states/show_load_more.dart';
 import 'package:topmaket/states/tabviewbar.dart';
 import 'package:topmaket/states/test.dart';
 import 'package:topmaket/test/SearchAppBar.dart';
@@ -103,71 +104,77 @@ final Map<String, WidgetBuilder> map = {
   //-- หน้าแรก ห้ามเปลี่ยน ------
   '/routeFirstPage': (BuildContext context) => new Home2(),
   //'/routeFirstPage': (BuildContext context) => new SearchOnAppBar(),
+
+  '/loadMore':(BuildContext context)=> ShowLoadMore(),
+
 };
 
 //clientAddNewPayBill
 //     static String routeClientCustomer = "/clientCustomer";
 String? firstState;
 
-Future<Null> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-
-  //-- create appication objrct
-  //MyApplication myApplication = new MyApplication();
-
-//--
-  //firstState = MyConstant.routeFirstPage;
-  //firstState = MyConstant.routeClientHome;
-  //runApp(MyApp());
-
-
-//-- ตัวอ่ยาการ POST MultipartForm 
-  //runApp(PostImage()); 
-
-
-  SharedPreferences preferences = await SharedPreferences.getInstance();
-  String? token = preferences.getString("token");
-
-  if (token == null) {
-    print("token == null");
-    firstState = MyConstant.routeCheckAuthen;
-    runApp(MyApp());
-  } else if (token.compareTo("null") == 0) {
-    print("token == null");
-    firstState = MyConstant.routeCheckAuthen;
-    runApp(MyApp());
-  } else {
-    print("token OK...");
-
-    String? clientID = preferences.getString("client_id");
-    String? clientName = preferences.getString("clinet_name");
-    int? clientCount = int.parse(preferences.getString("client_count")!);
-
-    print("client count = " + clientCount.toString());
-
-    MyConstant.currentHeadClientID = clientID;
-    if (clientCount == 0) {
-      
-//-- เป็นร้นเดียว ไม่มี สาขาแม่
-      MyConstant.isAvailableHeaderClient = false;
-      //--
-      MyConstant.currentClientID = clientID;
-      MyConstant.currentClientName = clientName;
-
-//-- ให้เปิดหน้า หลักขอบร้าน เลย
-      firstState = MyConstant.routeClientHome;
-    } else {
-//-- เป็นร้าน ที่มีสาขา
-      //-- มีสาขาแม่
-      MyConstant.isAvailableHeaderClient = true;
-
-      //-- เปิดหน้าสาขา
-      firstState = MyConstant.routeFirstPage;
-    }
-
-    runApp(MyApp());
-  }
+main() {
+  firstState = '/loadMore';
+  runApp(MyApp());
 }
+
+// Future<Null> main() async {
+//   WidgetsFlutterBinding.ensureInitialized();
+
+//   //-- create appication objrct
+//   //MyApplication myApplication = new MyApplication();
+
+// //--
+//   //firstState = MyConstant.routeFirstPage;
+//   //firstState = MyConstant.routeClientHome;
+//   //runApp(MyApp());
+
+// //-- ตัวอ่ยาการ POST MultipartForm
+//   //runApp(PostImage());
+
+//   SharedPreferences preferences = await SharedPreferences.getInstance();
+//   String? token = preferences.getString("token");
+
+//   if (token == null) {
+//     print("token == null");
+//     firstState = MyConstant.routeCheckAuthen;
+//     runApp(MyApp());
+//   } else if (token.compareTo("null") == 0) {
+//     print("token == null");
+//     firstState = MyConstant.routeCheckAuthen;
+//     runApp(MyApp());
+//   } else {
+//     print("token OK...");
+
+//     String? clientID = preferences.getString("client_id");
+//     String? clientName = preferences.getString("clinet_name");
+//     int? clientCount = int.parse(preferences.getString("client_count")!);
+
+//     print("client count = " + clientCount.toString());
+
+//     MyConstant.currentHeadClientID = clientID;
+//     if (clientCount == 0) {
+
+// //-- เป็นร้นเดียว ไม่มี สาขาแม่
+//       MyConstant.isAvailableHeaderClient = false;
+//       //--
+//       MyConstant.currentClientID = clientID;
+//       MyConstant.currentClientName = clientName;
+
+// //-- ให้เปิดหน้า หลักขอบร้าน เลย
+//       firstState = MyConstant.routeClientHome;
+//     } else {
+// //-- เป็นร้าน ที่มีสาขา
+//       //-- มีสาขาแม่
+//       MyConstant.isAvailableHeaderClient = true;
+
+//       //-- เปิดหน้าสาขา
+//       firstState = MyConstant.routeFirstPage;
+//     }
+
+//     runApp(MyApp());
+//   }
+// }
 
 class MyApp extends StatelessWidget {
   MyApplication? myApplication;
